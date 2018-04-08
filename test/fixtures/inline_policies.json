@@ -1,0 +1,10 @@
+[
+  {
+    "model": "InlinePolicy",
+    "paranoid": false,
+    "data": {
+      "resource": "role",
+      "action": "create"
+    }
+  }
+]

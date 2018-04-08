@@ -1,0 +1,10 @@
+[
+  {
+    "model": "AllowedPolicy",
+    "paranoid": false,
+    "data": {
+      "resource": "user",
+      "action": "create"
+    }
+  }
+]

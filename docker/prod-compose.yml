@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  cmts_db:
+    image: postgres:9.5
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'pg_container:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_USER: postgres
+      PGDATA: '/var/lib/postgresql/data'
+      POSTGRES_DB: cmts_production
+  
+  cmts_app:
+    image: rest-api
+    ports:
+      - "80:3001"
+    links:
+      - cmts_db
+    environment:
+      NODE_ENV: 'production'
+      PG_HOST: 'cmts_db'
+  
+volumes:
+  pg_container:

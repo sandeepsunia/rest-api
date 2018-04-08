@@ -1,0 +1,20 @@
+[
+  {
+    "model": "Schedule",
+    "paranoid": false,
+    "data": {
+      "id": 11,
+      "startDate": "2017-06-16 00:50:24.278820+05:30",
+      "endDate": "2017-06-16 00:50:24.278820+05:30"
+    }
+  },
+  {
+    "id": 1,
+    "model": "Conference",
+    "paranoid": false,
+    "data": {
+      "title": "Conf",
+      "schedule": 11
+    }
+  }
+]

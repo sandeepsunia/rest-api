@@ -1,0 +1,10 @@
+{
+    "verbose": false,
+    "watch": [
+      "api",
+      "webpack",
+      "config",
+      "services"
+    ],
+    "exec": "npm run build:dev && node compiled/server.dev.js"
+}

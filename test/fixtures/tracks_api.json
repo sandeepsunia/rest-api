@@ -1,0 +1,43 @@
+[
+  {
+    "model": "Schedule",
+    "paranoid": false,
+    "force": true,
+    "data": {
+      "id": 22,
+      "startDate": "2017-06-16 00:50:24.278820+05:30",
+      "endDate": "2017-06-16 00:50:24.278820+05:30"
+    }
+  },
+  {
+    "model": "Schedule",
+    "paranoid": false,
+    "force": true,
+    "data": {
+      "id": 23,
+      "startDate": "2016-07-16 00:50:24.278820+05:30",
+      "endDate": "2016-07-16 00:50:24.278820+05:30"
+    }
+  },
+  {
+    "model": "Conference",
+    "paranoid": false,
+    "force": true,
+    "data": {
+      "id": 1,
+      "title": "Test Conf",
+      "scheduleId": 22
+    }
+  },
+  {
+    "model": "Track",
+    "paranoid": false,
+    "force": true,
+    "data": {
+      "id": 1,
+      "title": "Track - Master",
+      "parentTrackId": null,
+      "scheduleId": 23
+    }
+  }
+]

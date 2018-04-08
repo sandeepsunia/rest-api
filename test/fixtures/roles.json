@@ -1,0 +1,34 @@
+[
+  {
+    "model": "Role",
+    "paranoid": false,
+    "data": {
+      "name": "admin",
+      "allowedPolicies": [
+        {
+          "resource": "user",
+          "action": "create"
+        }
+      ],
+      "deniedPolicies": [
+        {
+          "resource": "user",
+          "action": "delete"
+        }
+      ],
+      "inlinePolicies": [
+        {
+          "resource": "role",
+          "action": "create"
+        }
+      ]
+    }
+  },
+  {
+    "model": "Role",
+    "paranoid": false,
+    "data": {
+      "name": "guest"
+    }
+  }
+]

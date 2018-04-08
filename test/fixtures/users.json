@@ -1,0 +1,24 @@
+[
+  {
+    "model": "User",
+    "paranoid": false,
+    "data": {
+      "name": "Angela Bond",
+      "email": "angela_bond@test.com",
+      "password": "angela_bond",
+      "affiliation": "Executive Director",
+      "speaker": true
+    }
+  },
+  {
+    "model": "User",
+    "paranoid": false,
+    "data": {
+      "name": "Felicity Dyer",
+      "email": "felicity_dyer@test.com",
+      "password": "felicity_dyer",
+      "affiliation": "Developer",
+      "speaker": false
+    }
+  }
+]

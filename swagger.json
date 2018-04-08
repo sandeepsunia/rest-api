@@ -1,0 +1,407 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This API provides developers a safe and secure way to access data, with the ability to consume and manipulate the data presented to them. The CMTS Meeting API makes it easy for developers to use the information.\n\nFollowing endpoints have been defined:\n\n1. Get all users\n2. Get user based on userid or username\n3. Creation of new user\n4. Updation and deletion of user information\n5. Get all projects\n6. Get project based on project id\n7. Creation of new project\n8. Updation and deletion of project information\n9. Get all entities\n10. Get entity based on entity id or entity name\n11. Creation of new entity\n12. Updation and deletion of entity information\n13. User login\n14. User Forgot Password\n15. User logout\n16. Search for a meeting room.\n17. Schedule a meeting.\n18. Invite notification.\n19. Invite acknowledgement\n20. Create gmail calendar invite\n21. Send general purpose emails\n22. Get employees of an entity\n\nAll end points are accessible via 'https'.\n",
+    "version": "1.0.0",
+    "title": "CMTS APIs",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "sandy.iiita@gmail.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "user_operations",
+      "description": "This API is used for CRUD operations on User Schema."
+    },
+    {
+      "name": "project_operations",
+      "description": "This API is used for CRUD operations on Project Schema."
+    },
+    {
+      "name": "entity_operations",
+      "description": "This API is used for CRUD operations on Entity Schema."
+    },
+    {
+      "name": "get_users",
+      "description": "This API is used for getting the user information."
+    },
+    {
+      "name": "get_user_by_id",
+      "description": "This API is used for getting the user information of a specific user Id."
+    },
+    {
+      "name": "get_user_by_name",
+      "description": "This API is used for getting the user information of a specific user name."
+    },
+    {
+      "name": "create_user",
+      "description": "This API is used for creating a new user."
+    },
+    {
+      "name": "edit_user",
+      "description": "This API is used for editing the user information."
+    },
+    {
+      "name": "delete_user",
+      "description": "This API is used for deleting a user."
+    },
+    {
+      "name": "register_entity",
+      "description": "This API is used for registration of an entity ."
+    },
+    {
+      "name": "get_entity_by_id",
+      "description": "This API is used for getting the entity information of a specific entity Id."
+    },
+    {
+      "name": "get_entity_by_name",
+      "description": "This API is used for getting the user information of a specific entity name."
+    },
+    {
+      "name": "get_entity_employees",
+      "description": "This API is used for getting all the employees of a specific entity."
+    },
+    {
+      "name": "edit_entity",
+      "description": "This API is used for updating an entity ."
+    },
+    {
+      "name": "delete_entity",
+      "description": "This API is used for deletion of an entity ."
+    },
+    {
+      "name": "get_entity",
+      "description": "This API is used for getting information of an entity ."
+    },
+    {
+      "name": "get_employees",
+      "description": "This API is used for getting employees of an entity ."
+    },
+    {
+      "name": "create_project",
+      "description": "This API is used to create a new project."
+    },
+    {
+      "name": "get_project",
+      "description": "This API is used to get information about a project."
+    },
+    {
+      "name": "edit_project",
+      "description": "This API is used to update a project."
+    },
+    {
+      "name": "delete_project",
+      "description": "This API is used to delete a project."
+    },
+    {
+      "name": "user_login",
+      "description": "This API is provides user access and authentication."
+    },
+    {
+      "name": "search_meeting_room",
+      "description": "This API search for a vacant meeting room for a given date and availability of the priority invitees."
+    },
+    {
+      "name": "schedule_meeting",
+      "description": "These APIs are to store, fetch, edit or delete the meeting schedules."
+    },
+    {
+      "name": "invite_acknowledgment",
+      "description": "This API is to support the acknowledgement of meeting invites."
+    },
+    {
+      "name": "send_email",
+      "description": "This API is to send calendar invites and emails to user."
+    },
+    {
+      "name": "manage_meeting_rooms",
+      "description": "This API is to manage the meeting rooms during the conference."
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": [
+          "user_operations"
+        ],
+        "summary": "Gets information of all users",
+        "operationId": "get_user",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/user/register": {
+      "post": {
+        "tags": [
+          "register_user"
+        ],
+        "summary": "Creates a new user",
+        "description": "This is used to create a new user",
+        "operationId": "registerUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "description": "email and password",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/v1/user/login": {
+      "post": {
+        "tags": [
+          "user_login"
+        ],
+        "summary": "Logs user into the system",
+        "operationId": "loginUser",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "The email for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            },
+            "headers": {
+              "X-Rate-Limit": {
+                "type": "integer",
+                "format": "int32",
+                "description": "calls per hour allowed by the user"
+              },
+              "X-Expires-After": {
+                "type": "string",
+                "format": "date-time",
+                "description": "date in UTC when token expires"
+              }
+            }
+          },
+          "210": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "user_login"
+        ],
+        "summary": "Logs out current logged in user session",
+        "operationId": "logoutUser",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "Something went wrong while logging out!"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "picture": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+      "Tracks":{
+      "type": "object",
+      "required": [
+          "key",
+          "date",
+          "time",
+          "title",
+          "speakers",
+          "abstract",
+          "roomNum"
+      ],
+      "properties":{
+          "key":{
+              "type":"string"
+          },
+          "date":{
+              "type":"string"
+          },
+          "time":{
+              "type":"string"
+          },
+          "title":{
+              "type":"string"
+          },
+          "speakers":{
+              "type":"string"
+          },
+          "abstract":{
+              "type":"string"
+          },
+          "roomNum":{
+              "type":"string"
+          }
+      },
+      "xml": {
+        "name": "Track"
+      }
+    }
+  },
+    "Role": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Role"
+      }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "model": "UserRole",
+    "paranoid": false,
+    "data": {
+      "userId": 1,
+      "roleId": 1
+    }
+  },
+  {
+    "model": "UserRole",
+    "paranoid": false,
+    "data": {
+      "userId": 2,
+      "roleId": 2
+    }
+  }
+]

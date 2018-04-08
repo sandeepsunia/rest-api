@@ -1,0 +1,24 @@
+module.exports = {
+  development: {
+    username: process.env.PGUSER || 'postgres',
+    password: 'postgres',
+    database: 'cmts_dev',
+    host: 'localhost',
+    dialect: 'postgres'
+  },
+  test: {
+    username: process.env.PGUSER || 'postgres',
+    password: null,
+    database: 'cmts_test',
+    host: '127.0.0.1',
+    dialect: 'postgres'
+  },
+  production: {
+    use_env_variable: 'localhost',
+    username: process.env.PGUSER || 'postgres',
+    password: 'postgres',
+    database: 'cmts_prod',
+    host: 'localhost',
+    dialect: 'postgres'
+  }
+};

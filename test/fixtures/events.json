@@ -1,0 +1,64 @@
+[
+  {
+    "model": "Schedule",
+    "paranoid": false,
+    "force": true,
+    "data": {
+      "id": 10,
+      "startDate": "2017-06-16 00:50:24.278820+05:30",
+      "endDate": "2017-06-16 00:50:24.278820+05:30"
+    }
+  },
+  {
+    "model": "Schedule",
+    "paranoid": false,
+    "force": true,
+    "data": {
+      "id": 11,
+      "startDate": "2016-07-16 00:50:24.278820+05:30",
+      "endDate": "2016-07-16 00:50:24.278820+05:30"
+    }
+  },
+  {
+    "model": "Schedule",
+    "paranoid": false,
+    "force": true,
+    "data": {
+      "id": 12,
+      "startDate": "2016-08-16 00:50:24.278820+05:30",
+      "endDate": "2016-08-16 00:50:24.278820+05:30"
+    }
+  },
+  {
+    "model": "Conference",
+    "paranoid": false,
+    "force": true,
+    "data": {
+      "id": 1,
+      "title": "Test Conf",
+      "scheduleId": 10
+    }
+  },
+  {
+    "model": "Track",
+    "paranoid": false,
+    "force": true,
+    "data": {
+      "id": 1,
+      "title": "Test Track",
+      "scheduleId": 11
+    }
+  },
+  {
+    "model": "Event",
+    "paranoid": false,
+    "force": true,
+    "data": {
+      "id": 999,
+      "status": "published",
+      "title": "Test Event",
+      "trackId": 1,
+      "scheduleId": 12
+    }
+  }
+]

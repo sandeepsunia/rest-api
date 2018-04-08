@@ -1,0 +1,303 @@
+---
+swagger: '2.0'
+info:
+  description: |
+    This API provides developers a safe and secure way to access data, with the ability to consume and manipulate the data presented to them. The CMTS Meeting API makes it easy for developers to use the information.
+
+    Following endpoints have been defined:
+
+    1. Get all users
+    2. Get user based on userid or username
+    3. Creation of new user
+    4. Updation and deletion of user information
+    5. Get all projects
+    6. Get project based on project id
+    7. Creation of new project
+    8. Updation and deletion of project information
+    9. Get all entities
+    10. Get entity based on entity id or entity name
+    11. Creation of new entity
+    12. Updation and deletion of entity information
+    13. User login
+    14. User Forgot Password
+    15. User logout
+    16. Search for a meeting room.
+    17. Schedule a meeting.
+    18. Invite notification.
+    19. Invite acknowledgement
+    20. Create gmail calendar invite
+    21. Send general purpose emails
+    22. Get employees of an entity
+
+    All end points are accessible via 'https'.
+  version: 1.0.0
+  title: CMTS APIs
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: sandy.iiita@gmail.com
+tags:
+- name: user_operations
+  description: This API is used for CRUD operations on User Schema.
+- name: project_operations
+  description: This API is used for CRUD operations on Project Schema.
+- name: entity_operations
+  description: This API is used for CRUD operations on Entity Schema.
+- name: get_users
+  description: This API is used for getting the user information.
+- name: get_user_by_id
+  description: This API is used for getting the user information of a specific user
+    Id.
+- name: get_user_by_name
+  description: This API is used for getting the user information of a specific user
+    name.
+- name: create_user
+  description: This API is used for creating a new user.
+- name: edit_user
+  description: This API is used for editing the user information.
+- name: delete_user
+  description: This API is used for deleting a user.
+- name: register_entity
+  description: This API is used for registration of an entity .
+- name: get_entity_by_id
+  description: This API is used for getting the entity information of a specific entity
+    Id.
+- name: get_entity_by_name
+  description: This API is used for getting the user information of a specific entity
+    name.
+- name: get_entity_employees
+  description: This API is used for getting all the employees of a specific entity.
+- name: edit_entity
+  description: This API is used for updating an entity .
+- name: delete_entity
+  description: This API is used for deletion of an entity .
+- name: get_entity
+  description: This API is used for getting information of an entity .
+- name: get_employees
+  description: This API is used for getting employees of an entity .
+- name: create_project
+  description: This API is used to create a new project.
+- name: get_project
+  description: This API is used to get information about a project.
+- name: edit_project
+  description: This API is used to update a project.
+- name: delete_project
+  description: This API is used to delete a project.
+- name: user_login
+  description: This API is provides user access and authentication.
+- name: search_meeting_room
+  description: This API search for a vacant meeting room for a given date and availability
+    of the priority invitees.
+- name: schedule_meeting
+  description: These APIs are to store, fetch, edit or delete the meeting schedules.
+- name: invite_acknowledgment
+  description: This API is to support the acknowledgement of meeting invites.
+- name: send_email
+  description: This API is to send calendar invites and emails to user.
+- name: manage_meeting_rooms
+  description: This API is to manage the meeting rooms during the conference.
+paths:
+  "/api/v1/user/register":
+    post:
+      tags:
+      - register_user
+      summary: Creates a new user
+      description: This is used to create a new user
+      operationId: registerUser
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: data
+        in: body
+        required: true
+        description: email and password
+        schema:
+          "$ref": "#/definitions/User"
+      responses:
+        '201':
+          description: User created successfully
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              message:
+                type: string
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              message:
+                type: string
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              message:
+                type: string
+        default:
+          description: successful operation
+  "/api/v1/user/login":
+    post:
+      tags:
+      - user_login
+      summary: Logs user into the system
+      operationId: loginUser
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: email
+        in: query
+        description: The email for login
+        required: true
+        type: string
+      - name: password
+        in: query
+        description: The password for login in clear text
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: string
+          headers:
+            X-Rate-Limit:
+              type: integer
+              format: int32
+              description: calls per hour allowed by the user
+            X-Expires-After:
+              type: string
+              format: date-time
+              description: date in UTC when token expires
+        '210':
+          description: Invalid username/password supplied
+  "/api/v1/users":
+    get:
+      tags:
+      - user_operations
+      summary: Gets information of all users
+      operationId: get_user
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/Response"
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Failed
+        '403':
+          description: Forbidded
+        '404':
+          description: Not Found
+        '500':
+          description: Something Went Wrong
+      security:
+      - api_key: []
+  "/api/v1/user/{userId}":
+    get:
+      tags:
+      - user_operations
+      summary: Gets user information based on user Id
+      operationId: get_user_id
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: userId
+        in: path
+        description: User id of the user whose information is to be fetched.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/User"
+  "/user/logout":
+    get:
+      tags:
+      - user_login
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      produces:
+      - application/json
+      - application/xml
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+        '500':
+          description: Something went wrong while logging out!
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  Response:
+    type: object
+    required:
+      - success
+      - message
+    properties:
+      success:
+        type: boolean
+      count:
+        type: integer
+      responseObject:
+        type: object
+        properties:
+          data:
+            type: array
+  User:
+    type: object
+    required:
+    - email
+    - password
+    properties:
+      id:
+        type: integer
+        format: int64
+      email:
+        type: string
+      password:
+        type: string
+      name:
+        type: string
+      gender:
+        type: string
+      picture:
+        type: string
+    xml:
+      name: User
+  Role:
+    type: object
+    required:
+    - name
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      createdAt:
+        type: string
+      updatedAt:
+        type: string
+    xml:
+      name: Role
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

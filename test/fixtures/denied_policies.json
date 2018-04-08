@@ -1,0 +1,10 @@
+[
+  {
+    "model": "DeniedPolicy",
+    "paranoid": false,
+    "data": {
+      "resource": "user",
+      "action": "delete"
+    }
+  }
+]
