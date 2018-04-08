@@ -1,5 +1,7 @@
 Swagger.json defines all the service APIs which will be used in Conference Management application.
-
+User Credentials to use --
+username -- user1@gmail.com
+password -- 123
 # Pre-Requisites
 1. PostgreSQL ( optional ==> can be run in docker, see instructions below.)
 2. Node >=6.x
